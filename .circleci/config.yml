@@ -26,6 +26,21 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
+      # install packages
+      - run:
+          name: install packages and setup printer
+          command: |
+            sudo apt-get install poppler-utils cups
+            sudo lpadmin -p nowhere -E -v file:/dev/null
+
+      # configure to use yml files
+      - run:
+          name: use test configs
+          command: |
+            cp config/secrets.yml.travis config/secrets.yml
+            cp config/database.yml.travis config/database.yml
+            cp config/ldap.yml.travis config/ldap.yml
+
       - run:
           name: install dependencies
           command: |
