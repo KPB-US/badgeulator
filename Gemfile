@@ -53,8 +53,8 @@ group :development do
   gem 'spring'
 end
 
-gem 'bootstrap-sass'
-gem 'font-awesome-sass'
+gem 'bootstrap-sass', '>= 3.3.7'
+gem 'font-awesome-sass', '>= 5.0.6.2'
 gem 'simple_form', '>= 3.5.1'
 gem 'will_paginate-bootstrap'
 
