@@ -17,8 +17,7 @@ after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 env:
   global:
-    - CODECLIMATE_REPO_TOKEN=a01e4f1dd1cb1fcd1cbc0cc7864c3da556b88f11f8799d4273e363b5209df084 bundle exec rake
-    - CC_TEST_REPORTER_ID=a01e4f1dd1cb1fcd1cbc0cc7864c3da556b88f11f8799d4273e363b5209df084
+    - CC_TEST_REPORTER_ID=a01e4f1dd1cb1fcd1cbc0cc7864c3da556b88f11f8799d4273e363b5209df084 bundle exec rake
     - USE_LDAP=false
     - PRINTER=nowhere
 addons:
