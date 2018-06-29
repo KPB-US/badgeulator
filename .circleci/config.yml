@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.4.1-node-browsers
+       - image: circleci/ruby:2.4.1-jessie
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -18,8 +18,7 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apt update
-      - run: sudo apt -f install poppler-utils cups
+      - run: sudo apt-get install poppler-utils cups
       - run: sudo lpadmin -p nowhere -E -v file:/dev/null
 
       # Download and cache dependencies
