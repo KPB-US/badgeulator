@@ -1,4 +1,4 @@
-class CreateArtifacts < ActiveRecord::Migration
+class CreateArtifacts < ActiveRecord::Migration[4.2]
   def change
     create_table :artifacts do |t|
       t.references :side, index: true, foreign_key: true

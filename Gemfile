@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.4.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -14,12 +15,12 @@ gem 'sass-rails', '~> 5.0', '>= 5.0.7'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 4.2', '>= 4.2.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.3.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,15 +33,15 @@ group :development, :test do
   gem 'rubocop'
   gem 'simplecov', require: false
 
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', '>= 2.2.1'
   gem 'seed_dump'
 end
 
-gem 'rails-controller-testing', group: :test
+gem 'rails-controller-testing', '>= 1.0.2', group: :test
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 3.5.0'
+  gem 'web-console', '~> 3.5.1'
 
   # Use Capistrano for deployment
   gem 'capistrano', '~> 3.6'
@@ -54,7 +55,7 @@ end
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
-gem 'simple_form'
+gem 'simple_form', '>= 3.5.1'
 gem 'will_paginate-bootstrap'
 
 gem 'jcrop-rails-v2'
@@ -63,11 +64,11 @@ gem 'paperclip', '~> 5.3.0'
 gem 'prawn'
 
 gem 'cancancan', '~> 2.0'
-gem 'devise'
-gem 'devise_ldap_authenticatable'
+gem 'devise', '>= 4.4.1'
+gem 'devise_ldap_authenticatable', '>= 0.8.6'
 gem 'rolify'
 
-gem 'airbrake', '~> 5.0'
+gem 'rollbar'
 
 gem 'haml'
 
@@ -75,5 +76,5 @@ gem 'cocoon'
 
 gem 'mysql2'
 
-gem 'rest-client'  # for accessing mashape face detection api
+gem 'rest-client'  , '>= 1.8.0' # for accessing mashape face detection api
 gem 'remotipart'   # for ajax form posting
