@@ -18,7 +18,8 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apt install poppler-utils cups
+      - run: sudo apt update
+      - run: sudo apt -f install poppler-utils cups
       - run: sudo lpadmin -p nowhere -E -v file:/dev/null
 
       # Download and cache dependencies
