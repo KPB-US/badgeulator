@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/KPB-US/badgeulator.svg?style=svg)](https://circleci.com/gh/KPB-US/badgeulator)
 [![Build Status](https://travis-ci.org/KPB-US/badgeulator.svg?branch=master)](https://travis-ci.org/KPB-US/badgeulator)
 [![Code Climate](https://codeclimate.com/github/KPB-US/badgeulator/badges/gpa.svg)](https://codeclimate.com/github/KPB-US/badgeulator) [![Coverage](https://codeclimate.com/github/KPB-US/badgeulator/badges/coverage.svg)](https://codeclimate.com/github/KPB-US/badgeulator)
 
