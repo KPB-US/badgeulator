@@ -3,27 +3,27 @@
   = link_to @artifact.side.design.name, @artifact.side.design
 
 %p
-  %strongSide:
+  %strong Side:
   = link_to @artifact.side.side_name, @artifact.side
 
 %p
-  %strongName:
+  %strong Name:
   = @artifact.name
 
 %p
-  %strongOrder:
+  %strong Order:
   = @artifact.order
 
 %p
-  %strongDescription:
+  %strong Description:
   = @artifact.description
 
 %p
-  %strongValue:
+  %strong Value:
   = @artifact.value
 
 %p
-  %strongAttachement:
+  %strong Attachement:
   = image_tag @artifact.attachment.url unless @artifact.attachment.blank?
 
 %table.table.table-striped
