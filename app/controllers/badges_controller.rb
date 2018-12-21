@@ -85,6 +85,20 @@ class BadgesController < ApplicationController
     end
   end
 
+  def publish
+    begin
+      @badge.update_thumbnail = true
+      @badge.update_ad_thumbnail
+      @badge.save
+      render json: { status: 'Y', id: @badge.id }
+    rescue => e
+      render json: { status: 'N', message: e.message, id: @badge.id }
+    rescue Exception => e
+      render json: { status: 'N', message: e.message, id: @badge.id }
+    end
+  end
+
+
   # GET /badges/1/crop
   def crop
     ratio = @badge.picture_geometry(:original).width / @badge.picture_geometry(:badge).width

@@ -170,6 +170,21 @@ function handleLookup() {
     $(this).html('<i class="fa fa-spin fa-spinner"></i> Generating...').addClass('disabled');
   });
 
+  // handle publish results
+  $(document)
+    .on('ajax:success', '.ujs-publish', function (e, data, status, xhr) {
+      if (data['status'] === 'N') {
+        $('td#publish_' + data['id']).text('failed');
+        console.error('could not publish photo to ad', data['message']);
+      } else {
+        $('td#publish_' + data['id']).text('Y');
+        console.debug('published photo to ad', data);
+      }
+    })
+    .on('ajax:error', '.ujs-publish', function (e, xhr, status, error) {
+      console.error('could not publish photo to ad', data['message']);
+    })
+
   // wireup file upload form for upload images instead of using camera
   $(document)
     .on('ajax:success', '.upload-pic', function (e, data, status, xhr) {

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'camera'    # takes image
       get 'print'     # prints badge
       get 'generate'  # generate badge
+      get 'publish'   # publish to active directory
 
       patch 'snapshot'  # uploads file
       get 'crop'      # crops picture

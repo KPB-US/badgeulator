@@ -9,7 +9,7 @@
       %th Department
       %th Created
       - if ENV["USE_LDAP"] == "true"
-        %th{title: 'Active Directory thumbnail updated?'} AD
+        %th.publish{title: 'Active Directory thumbnail updated?'} AD
       %th
   %tbody
     - @badges.each do |badge|
@@ -27,7 +27,11 @@
         %td= badge.department
         %td= l(badge.created_at.localtime, format: :short)
         - if ENV["USE_LDAP"] == "true"
-          %td= (badge.update_thumbnail.blank? || badge.update_thumbnail == false ? '' : 'Y')
+          %td.publish{id: ['publish', badge.id]}
+            - if badge.picture.present? && (badge.update_thumbnail.blank? || badge.update_thumbnail == false)
+              = link_to 'Publish', publish_badge_path(badge), remote: true, class: 'btn btn-default btn-xs ujs-publish', data: { "disable-with": "publishing..." }
+            - else
+              = 'Y'
         %td
           = link_to 'Delete', badge, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' if !current_user.nil? && current_user.has_role?(:admin)
 
