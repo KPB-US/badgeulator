@@ -1,4 +1,4 @@
-class CreateSides < ActiveRecord::Migration
+class CreateSides < ActiveRecord::Migration[4.2]
   def change
     create_table :sides do |t|
       t.references :design, index: true, foreign_key: true

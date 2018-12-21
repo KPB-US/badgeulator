@@ -1,4 +1,4 @@
-class RenameLogoToAttachmentInArtifacts < ActiveRecord::Migration
+class RenameLogoToAttachmentInArtifacts < ActiveRecord::Migration[4.2]
   def change
     rename_column :artifacts, :logo_file_name, :attachment_file_name
     rename_column :artifacts, :logo_content_type, :attachment_content_type

@@ -1,0 +1,69 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.4.1-jessie
+        environment:
+          USE_LDAP: false
+          PRINTER: nowhere
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run: sudo apt-get update && sudo apt-get install poppler-utils cups
+      - run: sudo bash -c 'echo FileDevice yes>>/etc/cups/cupsd.conf; service cups restart'
+      - run: sudo lpadmin -p nowhere -E -v file:/dev/null
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      # configure to use yml files
+      - run:
+          name: use test configs
+          command: |
+            cp config/secrets.yml.travis config/secrets.yml
+            cp config/database.yml.travis config/database.yml
+            cp config/ldap.yml.travis config/ldap.yml
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+        
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      - type: shell
+        command: |
+          bundle exec rails test $(circleci tests glob "test/**/*_test.rb" | circleci tests split --split-by=timings)
+
+      # Run security scan
+      #- run: bundle exec brakeman
+
+      # collect reports
+      # - store_test_results:
+      #     path: /tmp/test-results
+      # - store_artifacts:
+      #     path: /tmp/test-results
+      #     destination: test-results
