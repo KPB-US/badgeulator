@@ -60,7 +60,9 @@ gem 'simple_form', '>= 3.5.1'
 gem 'will_paginate-bootstrap'
 
 gem 'jcrop-rails-v2'
-gem 'jpeg_camera', '~> 1.3.2'
+gem 'jpeg_camera', git: 'https://github.com/KPB-US/jpeg_camera.git'
+#gem 'jpeg_camera', path: '../jpeg_camera'
+
 gem 'paperclip', '~> 5.3.0'
 gem 'prawn'
 
