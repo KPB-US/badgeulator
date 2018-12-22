@@ -3,7 +3,7 @@ include LdapHelper
 
 class Badge < ApplicationRecord
 
-  has_attached_file :picture, styles: { badge: "300x400>", thumb: ["96x96#", :png] }, processors: [:cropper]
+  has_attached_file :picture, styles: { original: "", badge: "300x400>", thumb: ["96x96#", :png] }, processors: [:cropper], source_file_options: { all: '-auto-orient' }
   has_attached_file :card, styles: { preview: { geometry: "318x200>", format: :png, convert_options: "-png" } }, processors: [:pdftoppm]
 
   default_scope { order(created_at: :desc) }

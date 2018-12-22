@@ -29,6 +29,9 @@ function handleSnapshotUploadResponse(data) {
         x2: z.faces[0].x + z.faces[0].width,
         y2: z.faces[0].y + z.faces[0].height
       };
+
+      console.debug('origin finding:', face.x, face.y, face.x2, face.y2);
+
       var w = z.faces[0].width / 6;   // width margin to include
       var h = z.faces[0].height / 3;  // height margin to include
       if (face.x - w > 0) {
@@ -52,10 +55,12 @@ function handleSnapshotUploadResponse(data) {
         face.y2 = 400;
       }
 
+      console.debug('  adjusted:', face.x, face.y, face.x2, face.y2, w, h);
+
       $('#cropbox img').Jcrop({
         aspectRatio: 0.85,
         setSelect: [face.x, face.y, face.x2, face.y2],
-        maxSize: [face.x2 - face.x, face.y2 - face.y],
+        maxSize: [face.x2 - face.x + w * 2, face.y2 - face.y + h * 2],
         onChange: updateCrop,
         onSelect: updateCrop
       }, function() {
