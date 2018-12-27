@@ -1,13 +1,12 @@
 %h1 Badges
 
-%table.table.table-striped
+%span.pull-right.results-count= "#{number_with_delimiter(@badges.count)} results"
+= render 'filter', path: badges_path
+
+%table.table.table-striped.table-hover.table-condensed
   %thead
     %tr
-      %th Employee Id
-      %th Name
-      %th Title
-      %th Department
-      %th Created
+      = render 'click_sorting/table_headers', columns: @columns
       - if ENV["USE_LDAP"] == "true"
         %th.publish{title: 'Active Directory thumbnail updated?'} AD
       %th

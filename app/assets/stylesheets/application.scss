@@ -20,6 +20,9 @@
 
 @import 'jquery.Jcrop';
 
+@import 'select2';
+@import 'select2-bootstrap';
+
 @import 'artifacts';
 @import 'badges';
 @import 'designs';
@@ -30,6 +33,10 @@
 .btn {
   margin-bottom: .25em;
   margin-right: .25em;
+}
+
+.form-inline .btn {
+  margin-bottom: 0;
 }
 
 a.navbar-brand {
@@ -51,4 +58,27 @@ a.navbar-brand {
 
 .label-as-badge {
   border-radius: 1em;
+}
+
+/* for select2 to close when elsewhere in dom clicked https://github.com/select2/select2/issues/4939 */
+html, body {
+  height: 100%;
+}
+
+.results-count {
+  padding: .75em;
+}
+
+.version {
+  font-size: .5em;
+  display: block;
+  position: relative;
+  top: -5px;
+  opacity: .7;
+  text-align: center;
+} 
+
+.env-warning {
+  background-color: yellow;
+  text-align: center;
 }

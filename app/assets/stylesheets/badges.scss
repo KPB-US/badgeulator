@@ -122,3 +122,15 @@ form.upload-pic {
 td.publish, th.publish { 
   text-align: center;
 }
+
+form.filter-form {
+  text-align: right;
+  padding: .5em;
+  margin-bottom: .25em;
+  background-color: lighten($alert-info-bg, 5%);
+
+  span.selection span {
+    text-align: left;
+  }
+}
+

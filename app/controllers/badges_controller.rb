@@ -2,10 +2,93 @@ class BadgesController < ApplicationController
   #before_action :set_badge, only: [:show, :edit, :update, :destroy, :camera, :print, :snapshot, :crop, :generate]
   load_and_authorize_resource except: :lookup
 
+  include ClickSorting
+
   # GET /badges
   # GET /badges.json
   def index
-    @badges = Badge.paginate(page: params[:page])
+    # sorting code -----------------------------------------------------------------------------------------
+    @columns = [
+      { title: 'Emp #',      key: 'badges.employee_id' },
+      { title: 'Name',       key: 'badges.last_name, badges.first_name' },
+      { title: 'Title',      key: 'badges.title' },
+      { title: 'Department', key: 'badges.department' },
+      { title: 'Created',    key: 'badges.created_at' }
+    ]
+    default_sort = '-badges.created_at'
+    redirect_url = badges_path
+    sort = click_sort_info(@columns, default_sort, redirect_url)
+#    return if performed?
+    Rails.logger.debug("click_sorting = #{sort}")
+    # end of sorting code, returns "sort", order your results like so:  ...reorder(sort) --------------------
+    
+    source = Badge.all #paginate(page: params[:page])
+    pg_size = 25
+    filter_list source, pg_size, sort
+  end
+
+  def filter_list source, pg_size, sort
+
+    # get filter from cookie
+    if cookies["#{controller_name}_#{action_name}_filter"].present?
+      hf = JSON.parse(cookies["#{controller_name}_#{action_name}_filter"])
+      @filter_user = hf['user']
+      @filter_title = hf['title']
+      @filter_department = hf['department']
+    end
+
+    # overlay with filter from params
+    if params[:filter].present?
+      @filter_title = filter_params[:title] if filter_params.include?(:title)
+      @filter_department = filter_params[:department] if filter_params.include?(:department)
+      @filter_user = filter_params[:user] if filter_params.include?(:user)
+    end
+
+    where_clause = ''
+    where_params = {}
+
+    # reset filter
+    if params[:commit] == 'Reset'
+      @filter_department = ''
+      @filter_user = ''
+      @filter_title = ''
+
+      cookies.delete "#{controller_name}_#{action_name}_filter"
+    else
+      # save the filter to the cookie
+      cookies["#{controller_name}_#{action_name}_filter"] = JSON.generate({
+        department: @filter_department,
+        user: @filter_user,
+        title: @filter_title
+      })
+    end
+
+    # apply filter
+    unless @filter_department.blank?
+      where_clause += " and " unless where_clause.blank?
+      where_clause += "badges.department = :department" 
+      where_params[:department] = @filter_department
+    end
+    unless @filter_title.blank?
+      where_clause += " and " unless where_clause.blank?
+      where_clause += "badges.title = :title" 
+      where_params[:title] = @filter_title
+    end
+    unless @filter_user.blank?
+      where_clause += " and " unless where_clause.blank?
+      where_clause += "concat(badges.first_name, ' ', badges.last_name) = :filtered_user"
+      where_params[:filtered_user] = @filter_user
+    end
+
+    # prepare filter choices
+    @filter_departments = Badge.unscope(:order).distinct.pluck(:department).sort
+    @filter_titles = Badge.unscope(:order).distinct.pluck(:title).sort
+    @filter_users = Badge.unscope(:order).select(:first_name, :last_name).map{|b| b.first_name + " " + b.last_name}.sort.uniq
+
+    @badges = source.where(where_clause, where_params).reorder(sort)
+
+    # paginate it
+    @badges = @badges.paginate(page: params[:page], per_page: pg_size)
   end
 
   # GET /badges/1
@@ -270,6 +353,11 @@ class BadgesController < ApplicationController
 
     def snapshot_params
       params.require(:badge).permit(:picture)
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def filter_params
+      params.require(:filter).permit(:title, :department, :user, :commit)
     end
 
     def print_badge

@@ -1,0 +1,14 @@
+<%= simple_form_for(:filter, html: { class: 'filter-form form-inline'}, method: :get, url: path) do |f| %>
+  <div class="form-group">
+    <% if @filter_users.present? %>
+      <%= f.input :user, collection: @filter_users, prompt: 'Employee', label: false, selected: @filter_user, input_html: { class: 'submit-on-change select2' } %>
+    <% end %>
+    <% if @filter_titles.present? %>
+      <%= f.input :title, collection: @filter_titles, prompt: 'Title', label: false, selected: @filter_title, input_html: { class: 'submit-on-change select2' } %>
+    <% end %>
+    <% if @filter_departments.present? %>
+      <%= f.input :department, collection: @filter_departments, prompt: 'Department', label: false, selected: @filter_department, input_html: { class: 'submit-on-change select2' } %>
+    <% end %>
+    <%= f.button :submit, 'Reset', class: 'btn btn-default' %>
+  </div>
+<% end %>

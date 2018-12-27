@@ -1,0 +1,16 @@
+      <% columns.each do |column| %>
+        <th>
+          <% if column[:key].present? %>
+            <a href="?sort=<%= column[:key] %>">
+          <% end %>
+          <%= column[:title] %> 
+          <% if column[:sort] == '+' %>
+            <i class="text-muted fa fa-arrow-up"></i>
+          <% elsif column[:sort] == '-' %>
+            <i class="text-muted fa fa-arrow-down"></i>
+          <% end %>
+          <% if column[:key].present? %>
+            </a>
+          <% end %>
+        </th>
+      <% end %>

@@ -19,5 +19,21 @@
 //= require jpeg_camera/jpeg_camera_no_flash
 //= require jpeg_camera_init
 //= require jquery.Jcrop
+//= require select2
 //= require cocoon
 //= require_tree .
+
+
+// init all the static selects
+function initSelect2() {
+  $('input.select2, select.select2').select2({
+    theme: 'bootstrap'
+  });
+}
+
+// https://stackoverflow.com/a/41915129/1778068
+$(document).on("turbolinks:before-cache", function() {
+  $('input.select2, select.select2').select2('destroy');
+});
+
+$(document).on('turbolinks:load', initSelect2);
