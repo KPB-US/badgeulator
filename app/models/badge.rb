@@ -19,6 +19,12 @@ class Badge < ApplicationRecord
   validates :title, presence: true
   validates :employee_id, presence: true
 
+  # of the badges that have a photo and a card, get the most recent per employee_id
+  def self.complete
+    where('picture_file_size > 0 and card_file_size > 0 
+      and id = (select max(id) from badges b where b.employee_id = badges.employee_id and b.picture_file_size > 0 and b.card_file_size > 0)')
+  end
+
   def cropping?
     return !crop_x.blank?
   end

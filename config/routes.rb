@@ -27,6 +27,10 @@ Rails.application.routes.draw do
       get 'crop'      # crops picture
       post 'snapshot' # uploads snapshot
     end
+
+    collection  do
+      get 'recent'  # show gallery of recent mugshots
+    end
   end
 
   post 'lookup' => 'badges#lookup', as: :lookup

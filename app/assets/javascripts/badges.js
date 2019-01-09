@@ -15,22 +15,27 @@ function handleSnapshotUploadResponse(data) {
   $('#cropbox img').attr('src', data.url);
   $('#cropbox').removeClass("hidden");
 
+  // default for when no face found
+  var face = { x: 1, y: 1, x2: 25, y2: 25 }
+  var maxSize = [200 * 0.85, 200];
+
   z = data.results;
   // console.debug(z);
   if (z && typeof z.faces != "undefined") {
     if (z.faces.length == 0) {
-      $('.status').text("Unable to find face in photo");
-      $('.retake2-snapshot').removeClass('hidden');
+      console.debug("Unable to find face in photo");
+      // $('.status').text("Unable to find face in photo");
+      // $('.retake2-snapshot').removeClass('hidden');
     } else {
       // found so lets pinpoint
-      var face = {
+      face = {
         x: z.faces[0].x,
         y: z.faces[0].y,
         x2: z.faces[0].x + z.faces[0].width,
         y2: z.faces[0].y + z.faces[0].height
       };
 
-      console.debug('origin finding:', face.x, face.y, face.x2, face.y2);
+      // console.debug('origin finding:', face.x, face.y, face.x2, face.y2);
 
       var w = z.faces[0].width / 6;   // width margin to include
       var h = z.faces[0].height / 3;  // height margin to include
@@ -54,30 +59,31 @@ function handleSnapshotUploadResponse(data) {
       } else {
         face.y2 = 400;
       }
+      maxSize = [face.x2 - face.x + w * 2, face.y2 - face.y + h * 2];
 
-      console.debug('  adjusted:', face.x, face.y, face.x2, face.y2, w, h);
-
-      $('#cropbox img').Jcrop({
-        aspectRatio: 0.85,
-        setSelect: [face.x, face.y, face.x2, face.y2],
-        maxSize: [face.x2 - face.x + w * 2, face.y2 - face.y + h * 2],
-        onChange: updateCrop,
-        onSelect: updateCrop
-      }, function() {
-        jcrop_api = this;
-      });
-      $('.crop-snapshot').removeClass('hidden');
-      $('.retake2-snapshot').removeClass('hidden');
-      $('.retake-snapshot').removeClass('hidden');
-      $('.step-take').removeClass("step-active");
-      $('.step-crop').addClass("step-active");
-      $('.status').empty();
+      // console.debug('  adjusted:', face.x, face.y, face.x2, face.y2, w, h);
     }
   } else {
     console.debug('unable to find face');
-    $('#upload_response').html("Unable to find a face in the photo.");
-    $('.status').empty();
+    // $('#upload_response').html("Unable to find a face in the photo.");
+    // $('.status').empty();
   }
+
+  $('#cropbox img').Jcrop({
+    aspectRatio: 0.85,
+    setSelect: [face.x, face.y, face.x2, face.y2],
+    maxSize: maxSize,
+    onChange: updateCrop,
+    onSelect: updateCrop
+  }, function() {
+    jcrop_api = this;
+  });
+  $('.crop-snapshot').removeClass('hidden');
+  $('.retake2-snapshot').removeClass('hidden');
+  $('.retake-snapshot').removeClass('hidden');
+  $('.step-take').removeClass("step-active");
+  $('.step-crop').addClass("step-active");
+  $('.status').empty();
 }
 
 function takeSnapshot() {

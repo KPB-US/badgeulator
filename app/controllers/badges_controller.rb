@@ -4,6 +4,13 @@ class BadgesController < ApplicationController
 
   include ClickSorting
 
+  # GET /badges/recent
+  def recent
+    @badges = Badge.complete.paginate(page: params[:page], per_page: 18)
+    render 'gallery'
+  end
+
+
   # GET /badges
   # GET /badges.json
   def index

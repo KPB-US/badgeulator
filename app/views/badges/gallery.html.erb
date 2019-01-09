@@ -1,0 +1,23 @@
+<div class="gallery">
+  <div class="row">
+    <% @badges.each do |b| %>
+      <div class="col-xs-6 col-md-2">
+        <div class="thumbnail">
+          <a href="<%= b.picture.url(:original) %>" target="_blank" title="<%= b.employee_id %>">
+            <img src="<%= b.picture.url(:thumb) %>" alt="<%= b.name %>">
+          </a>
+          <div class="caption text-center">
+            <h3>
+              <%= b.name %>
+            </h3>
+            <p>
+              <%= b.title %><br/>
+              <%= b.department %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= will_paginate @badges, renderer: BootstrapPagination::Rails  %>
+</div>

@@ -134,3 +134,22 @@ form.filter-form {
   }
 }
 
+.gallery {
+  .thumbnail {
+    padding-top: 9px;
+    .caption {
+      h3 {
+        margin-top: 0;
+      }
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    img {
+      min-height: 150px;
+      max-height: 150px;
+      border-radius: 10px;
+    }
+  }
+}
