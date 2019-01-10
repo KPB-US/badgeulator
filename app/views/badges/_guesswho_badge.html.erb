@@ -1,12 +1,10 @@
 <div class="col-xs-6 col-md-2">
   <div class="thumbnail person" data-id="<%= badge.id %>">
     <div class="created-at"><%= badge.created_at.localtime.strftime('%-m/%-d/%Y %-I:%M%p') %></div>
-    <a href="<%= badge.picture.url(:original) %>" target="_blank" title="<%= badge.employee_id %>">
       <img src="<%= badge.picture.url(:thumb) %>" alt="<%= badge.name %>">
-    </a>
     <div class="caption text-center">
       <h3>
-        <%= '?' %>
+        <i class="text-muted fa fa-question-circle"></i>
       </h3>
       <p>
         <span class="title">&nbsp;</span>

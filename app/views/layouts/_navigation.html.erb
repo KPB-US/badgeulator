@@ -50,14 +50,11 @@
             <a href="https://10.0.0.29:631/printers" target="_blank"><i class="fa fa-print"></i> Printers</a>
           </li>
         <% end %>
-
-<!--
         <li>
-          <%= link_to guesswho_badges_path do %>
-            <i class="fa fa-question-circle"></i> Mysterious Menu Option
+          <%= link_to guesswho_badges_path, data: { turbolinks: false } do %>
+            <i class="fa fa-question-circle"></i> Guess Who
           <% end %>
         </li>
--->
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

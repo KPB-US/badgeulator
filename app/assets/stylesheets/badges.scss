@@ -156,7 +156,7 @@ form.filter-form {
       font-size: 8pt;
       opacity: 0.2;
       font-weight: bold;
-      writing-mode: vertical-lr;
+      writing-mode: tb-rl; //vertical-lr;
       text-orientation: sideways;
       float: right;
     }
@@ -167,6 +167,14 @@ form.filter-form {
       border-radius: 10px;
       border: 1px solid lightgray;
     }
+
+    &.correct {
+      background: rgb(139, 230, 139);
+    }
+
+    &.dragover {
+      border-color: gray;
+    }
   }
 
   .used {
@@ -176,10 +184,41 @@ form.filter-form {
 }
 
 .scoreboard {
-  display: inline-block;
-  padding-left: 4em;
+  padding-left: 2em;
+  float: right;
   font-size: .8em;
   font-weight: bold;
   color: red;
   text-transform: uppercase;
+
+  &.good {
+    color: green;
+  }
+}
+
+.grabbable {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.grabbable:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+@keyframes wrong {
+  0% {
+    background: red
+  }
+  100% {
+    background: none;
+  }
+}
+
+.missed {
+  animation: wrong 1s;
 }

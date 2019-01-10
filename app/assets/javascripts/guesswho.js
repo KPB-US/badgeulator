@@ -1,55 +1,70 @@
+var _initGuesswho = false;
+
 function initGuesswho() {
   var failed = 0;
   var correct = 0;
 
+  if (_initGuesswho) {
+    return;
+  }
+
   console.log('guesswho initialized');
-  // $(document).on('change', 'select.submit-on-change', function () {
-  //   this.form.submit();
-  // });
 
   function dragstart_handler(ev) {
-    // console.log("dragStart", ev);
     // Add the target element's id to the data transfer object
-    ev.originalEvent.dataTransfer.setData("text/plain", $(ev.currentTarget).data('id'));
-    ev.originalEvent.dropEffect = "move";
+    var id = $(ev.target).data('id');
+    ev.originalEvent.dataTransfer.setData("text", '' + id);
+    console.log('dragging', id);
   }
   
   function drop_handler(ev) {
     ev.originalEvent.preventDefault();
     // Get the id of the target and add the moved element to the target's DOM
-    var data = ev.originalEvent.dataTransfer.getData("text/plain");
-    // console.log('dropped', data);
-    // ev.target.appendChild(document.getElementById(data));
-
-    var dropped_on = $(ev.originalEvent.target).data('id');
-    if (!dropped_on) {
+    var sourceId = ev.originalEvent.dataTransfer.getData("text");
+    var destinationId = $(ev.originalEvent.target).data('id');
+    if (!destinationId) {
       // console.log('looking up');
-      dropped_on = $(ev.originalEvent.target).closest('.person').data('id');
+      destinationId = $(ev.originalEvent.target).closest('.person').data('id');
     }
-    // console.log('dropped on', dropped_on, ev.originalEvent);
-    if (data == dropped_on) {
-      var nameTag = $('.name-tag[data-id=' + data + ']');
-      $('.person[data-id=' + data + '] .caption').html($(nameTag).find('.caption').html());
+    console.log('dropped', sourceId, 'on', destinationId);
+    var person = $('.person[data-id=' + destinationId + ']');
+    
+    // don't handle drops if already guessed correctly
+    if (person.hasClass('correct')) {
+      return;
+    }
+
+    if (sourceId == destinationId) {
+      var nameTag = $('.name-tag[data-id=' + sourceId + ']');
+      $('.person[data-id=' + destinationId + '] .caption').html($(nameTag).find('.caption').html());
       nameTag.addClass('used').removeAttr('draggable');
+      person.addClass('correct');
       correct++;
     } else {
-      console.log('boo');
+      person.addClass('missed');
+      setTimeout(function(){
+        person.removeClass('missed');
+      }, 1000);
       failed++;
     }
 
-    $('.scoreboard').text("Correct " + correct + ", Missed " + failed);
-
+    $('.scoreboard').text("" + Math.round(correct / (correct + failed) * 100.0) + "%, Guesses " + (correct + failed));
+    if (correct >= failed) {
+      $('.scoreboard').addClass('good');
+    } else {
+      $('.scoreboard').removeClass('good');
+    }
   }
 
   function dragover_handler(ev) {
     ev.originalEvent.preventDefault();
-    // Set the dropEffect to move
-    ev.originalEvent.dataTransfer.dropEffect = "move"
   }
 
   $('div.guesswho').on('dragstart', '.name-tag', dragstart_handler);
   $('div.guesswho').on('dragover', '.person', dragover_handler);
   $('div.guesswho').on('drop', '.person', drop_handler);
+
+//  _initGuesswho = true;
 }
 
 $(document).on('turbolinks:load', initGuesswho);
