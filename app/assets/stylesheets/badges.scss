@@ -222,3 +222,12 @@ form.filter-form {
 .missed {
   animation: wrong 1s;
 }
+
+.badges-index {
+  td {
+    img {
+      min-height: 40px;
+      max-height: 40px;
+    }
+  }
+}

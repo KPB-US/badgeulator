@@ -3,9 +3,10 @@
 %span.pull-right.results-count= "#{number_with_delimiter(@badges.count)} results"
 = render 'filter', path: badges_path
 
-%table.table.table-striped.table-hover.table-condensed
+%table.table.table-striped.table-hover.table-condensed.badges-index
   %thead
     %tr
+      %th
       = render 'click_sorting/table_headers', columns: @columns
       - if ENV["USE_LDAP"] == "true"
         %th.publish{title: 'Active Directory thumbnail updated?'} AD
@@ -13,6 +14,9 @@
   %tbody
     - @badges.each do |badge|
       %tr
+        %td
+          - if badge.picture.present?
+            %img{src: badge.picture.url(:thumb)}
         %td
           = badge.employee_id
           - if badge.picture.blank?
