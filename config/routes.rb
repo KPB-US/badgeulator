@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
     collection  do
       get 'recent'  # show gallery of recent mugshots
+      get 'guesswho'
     end
   end
 

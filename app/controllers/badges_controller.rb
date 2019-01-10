@@ -10,6 +10,10 @@ class BadgesController < ApplicationController
     render 'gallery'
   end
 
+  def guesswho
+    @badges = Badge.complete.shuffle.slice(1, 12)
+    render 'guesswho'
+  end
 
   # GET /badges
   # GET /badges.json

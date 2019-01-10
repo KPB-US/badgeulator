@@ -168,4 +168,18 @@ form.filter-form {
       border: 1px solid lightgray;
     }
   }
+
+  .used {
+    //background-color: gray;
+    opacity: .2;
+  }
+}
+
+.scoreboard {
+  display: inline-block;
+  padding-left: 4em;
+  font-size: .8em;
+  font-weight: bold;
+  color: red;
+  text-transform: uppercase;
 }
