@@ -37,7 +37,7 @@ function initGuesswho() {
       failed++;
     }
 
-    $('.scoreboard').text(`Correct ${correct}, Missed ${failed}`);
+    $('.scoreboard').text("Correct " + correct + ", Missed " + failed);
 
   }
 
