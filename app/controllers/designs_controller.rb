@@ -1,4 +1,6 @@
 class DesignsController < ApplicationController
+  before_action :authenticate_user!
+
   load_and_authorize_resource # from cancancan
 
   # GET /designs

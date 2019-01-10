@@ -1,6 +1,8 @@
 class BadgesController < ApplicationController
+  before_action :authenticate_user!, except: :guesswho
+
   #before_action :set_badge, only: [:show, :edit, :update, :destroy, :camera, :print, :snapshot, :crop, :generate]
-  load_and_authorize_resource except: :lookup
+  load_and_authorize_resource except: [:lookup, :guesswho]
 
   include ClickSorting
 

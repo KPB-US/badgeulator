@@ -1,4 +1,6 @@
 class ArtifactsController < ApplicationController
+  before_action :authenticate_user!
+
   #before_action :set_artifact, only: [:show, :edit, :update, :destroy, :copy_props]
   load_and_authorize_resource # from cancancan
 
