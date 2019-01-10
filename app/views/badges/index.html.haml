@@ -32,7 +32,7 @@
             - else
               = 'Y'
         %td
-          = link_to 'Delete', badge, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' if !current_user.nil? && current_user.has_role?(:admin)
+          = link_to 'Delete', badge, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' if !current_user.nil? && can?(:delete, badge)
 
 = will_paginate @badges, renderer: BootstrapPagination::Rails
 

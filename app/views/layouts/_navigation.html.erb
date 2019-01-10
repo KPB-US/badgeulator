@@ -30,6 +30,11 @@
             <i class="fa fa-credit-card"></i> Badges
           <% end %>
         </li>
+        <li>
+          <%= link_to recent_badges_path do %>
+            <i class="fa fa-th-large"></i> Gallery
+          <% end %>
+        </li>
         <% if user_signed_in? and current_user.has_role? :admin %>
           <li>
             <%= link_to designs_path do %>

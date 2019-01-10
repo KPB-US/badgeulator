@@ -2,7 +2,8 @@
   <div class="row">
     <% @badges.each do |b| %>
       <div class="col-xs-6 col-md-2">
-        <div class="thumbnail">
+        <div class="thumbnail" data-id="<%= b.id %>">
+          <div class="created-at"><%= b.created_at.localtime.strftime('%-m/%-d/%Y %-I:%M%p') %></div>
           <a href="<%= b.picture.url(:original) %>" target="_blank" title="<%= b.employee_id %>">
             <img src="<%= b.picture.url(:thumb) %>" alt="<%= b.name %>">
           </a>
@@ -11,8 +12,8 @@
               <%= b.name %>
             </h3>
             <p>
-              <%= b.title %><br/>
-              <%= b.department %>
+              <span class="title"><%= b.title %></span>
+              <span class="department"><%= b.department %></span>
             </p>
           </div>
         </div>

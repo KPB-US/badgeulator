@@ -144,12 +144,28 @@ form.filter-form {
       p {
         margin-bottom: 0;
       }
+      span.title, span.department {
+        display: block;
+      }
+      span.department {
+        font-style: italic;
+      }
+    }
+
+    .created-at {
+      font-size: 8pt;
+      opacity: 0.2;
+      font-weight: bold;
+      writing-mode: vertical-lr;
+      text-orientation: sideways;
+      float: right;
     }
 
     img {
       min-height: 150px;
       max-height: 150px;
       border-radius: 10px;
+      border: 1px solid lightgray;
     }
   }
 }
