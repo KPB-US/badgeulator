@@ -5,7 +5,7 @@ Rollbar.configure do |config|
   config.access_token = '6fca33d950e541c4be539e6b1bb0b435'
 
   # Here we'll disable in 'test':
-  if Rails.env.test?
+  if Rails.env.test? or Rails.env.development?
     config.enabled = false
   end
 
@@ -14,8 +14,8 @@ Rollbar.configure do |config|
   # `username`, and `email` methods to fetch those properties. To customize:
   # config.person_method = "my_current_user"
   # config.person_id_method = "my_id"
-  # config.person_username_method = "my_username"
-  # config.person_email_method = "my_email"
+  config.person_username_method = "name"
+  config.person_email_method = "email"
 
   # If you want to attach custom data to all exception and message reports,
   # provide a lambda like the following. It should return a hash.
