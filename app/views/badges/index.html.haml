@@ -31,10 +31,13 @@
         %td= l(badge.created_at.localtime, format: :short)
         - if ENV["USE_LDAP"] == "true"
           %td.publish{id: ['publish', badge.id]}
-            - if badge.picture.present? && (badge.update_thumbnail.blank? || badge.update_thumbnail == false)
-              = link_to 'Publish', publish_badge_path(badge), remote: true, class: 'btn btn-default btn-xs ujs-publish', data: { "disable-with": "publishing..." }
+            - if badge.picture.blank? || badge.dn.blank?
+              = '-'
             - else
-              = 'Y'
+              - if badge.update_thumbnail.blank? || badge.update_thumbnail == false
+                = link_to 'Publish', publish_badge_path(badge), remote: true, class: 'btn btn-default btn-xs ujs-publish', data: { "disable-with": "publishing..." }
+              - else
+                = 'Y'
         %td
           = link_to 'Delete', badge, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' if !current_user.nil? && can?(:delete, badge)
 
