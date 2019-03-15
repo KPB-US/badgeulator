@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.5', '>= 5.1.5'
+gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.2', '>= 4.2.2'
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '>= 4.3.1'
+gem 'jquery-rails', '>= 4.3.3'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -34,11 +34,11 @@ group :development, :test do
   gem 'rubocop'
   gem 'simplecov', require: false
 
-  gem 'dotenv-rails', '>= 2.2.1'
+  gem 'dotenv-rails', '>= 2.5.0'
   gem 'seed_dump'
 end
 
-gem 'rails-controller-testing', '>= 1.0.2', group: :test
+gem 'rails-controller-testing', '>= 1.0.4', group: :test
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -56,7 +56,7 @@ end
 
 gem 'bootstrap-sass', '>= 3.3.7'
 gem 'font-awesome-sass', '>= 5.0.6.2'
-gem 'simple_form', '>= 3.5.1'
+gem 'simple_form', '>= 4.1.0'
 gem 'will_paginate-bootstrap'
 
 gem 'jcrop-rails-v2'
@@ -67,7 +67,7 @@ gem 'paperclip', '~> 5.3.0'
 gem 'prawn'
 
 gem 'cancancan', '~> 2.0'
-gem 'devise', '>= 4.4.1'
+gem 'devise', '>= 4.5.0'
 gem 'devise_ldap_authenticatable', '>= 0.8.6'
 gem 'rolify'
 
