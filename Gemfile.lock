@@ -322,6 +322,7 @@ DEPENDENCIES
   clockwork
   cocoon
   coffee-rails (~> 4.2, >= 4.2.2)
+  daemons
   devise (>= 4.6.0)
   devise_ldap_authenticatable (>= 0.8.6)
   dotenv-rails (>= 2.2.1)

@@ -86,3 +86,4 @@ gem 'remotipart'   # for ajax form posting
 gem 'select2-rails', github: 'mfrederickson/select2-rails' # from another forker that has a later version of select2/select2
 
 gem 'clockwork'
+gem 'daemons'
