@@ -42,7 +42,7 @@ class Badge < ApplicationRecord
         results = ldap.search(
           filter: "(#{attribute}=#{value})",      # active_filter,
           attributes: %w(givenname mail dn sn employeeID manager title department thumbnailPhoto) )
-        Rails.logger.debug("#{results.size} results found")
+        #Rails.logger.debug("#{results.size} results found")
         if results.size == 1
           entry = results.first
         end
@@ -57,7 +57,7 @@ class Badge < ApplicationRecord
     info = {}
 
     if ENV["USE_LDAP"] == "true"
-      Rails.logger.debug("using ldap employee lookup")
+      #Rails.logger.debug("using ldap employee lookup")
 
       entry = ad_lookup(attribute, value)
       unless entry.blank?
@@ -83,6 +83,33 @@ class Badge < ApplicationRecord
     info
   end
 
+  def self.update_missing_dns
+    badges = Badge.where(dn: '', update_thumbnail: true)
+    Rails.logger.debug("attempting to find #{badges.count} dns...")
+    count_worked = 0
+    count_failed = 0
+    badges.each do |badge|
+      next if badge.picture.blank? || badge.employee_id.blank? || badge.employee_id == '0'
+
+      entry = Badge.lookup_employee('employeeID', badge.employee_id)
+      if entry.present?
+        badge.dn = entry[:dn]
+        begin
+          badge.update_ad_thumbnail
+          badge.save
+          count_worked += 1
+        rescue Exception => e
+          # silently fail
+          count_failed += 1
+          Rails.logger.debug(e.message)
+        end
+      else
+        Rails.logger.debug("still cannot find ad entry for employeeID #{badge.employee_id} for #{badge.id} #{badge.name}")
+      end
+    end
+    { worked: count_worked, failed: count_failed }
+  end
+
   def name
     "#{first_name} #{last_name}"
   end
@@ -91,6 +118,7 @@ class Badge < ApplicationRecord
     return if ENV["USE_LDAP"] != "true" || dn.blank? || update_thumbnail == false
 
     with_ldap do |ldap|
+      Rails.logger.debug("attempting to update thumbnailPhoto for #{id} with dn #{dn}")
       picture_data = File.binread(picture.path(:thumb))
       ldap.replace_attribute dn, :thumbnailPhoto, picture_data
       raise Exception, "Unable to update thumbnailPhoto - #{ldap.get_operation_result.message}" if ldap.get_operation_result.code != 0

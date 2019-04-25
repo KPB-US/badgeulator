@@ -11,6 +11,8 @@ set :repo_url, 'git@github.com:KPB-US/badgeulator.git'
 # set :deploy_to, '/var/www/my_app_name'
 set :deploy_to, "/var/webapps/#{fetch(:application)}"
 
+set :clockwork_file, "clock.rb"
+
 # Default value for :scm is :git
 # set :scm, :git
 

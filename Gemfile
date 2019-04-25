@@ -49,6 +49,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-rvm'
+  gem 'capistrano-clockwork'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -83,3 +84,5 @@ gem 'rest-client'  , '>= 1.8.0' # for accessing mashape face detection api
 gem 'remotipart'   # for ajax form posting
 
 gem 'select2-rails', github: 'mfrederickson/select2-rails' # from another forker that has a later version of select2/select2
+
+gem 'clockwork'
