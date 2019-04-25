@@ -231,3 +231,17 @@ form.filter-form {
     }
   }
 }
+
+// for a better guess who experience
+.thumbnail.person {
+  min-height: 265px;
+}
+.thumbnail.person div.caption p {
+  display: none;
+}
+.thumbnail.person.correct div.caption p {
+  display: block;
+}
+
+
+

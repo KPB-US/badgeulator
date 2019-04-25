@@ -55,7 +55,7 @@ group :development do
   gem 'spring'
 end
 
-gem 'bootstrap-sass', '>= 3.3.7'
+gem 'bootstrap-sass', '>= 3.4.1'
 gem 'font-awesome-sass', '>= 5.0.6.2'
 gem 'simple_form', '>= 3.5.1'
 gem 'will_paginate-bootstrap'
@@ -68,7 +68,7 @@ gem 'paperclip', '~> 5.3.0'
 gem 'prawn'
 
 gem 'cancancan', '~> 2.0'
-gem 'devise', '>= 4.4.1'
+gem 'devise', '>= 4.6.0'
 gem 'devise_ldap_authenticatable', '>= 0.8.6'
 gem 'rolify'
 
