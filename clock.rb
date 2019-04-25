@@ -6,6 +6,8 @@ module Clockwork
   configure do |config|
     config[:sleep_timeout] = 15
     config[:logger] = Logger.new(File.join(Rails.root, 'log', 'clockwork.log'))
+
+    ENV['USE_LDAP'] = 'true' # cant update thumbnails without it
   end
 
   handler do |job|
