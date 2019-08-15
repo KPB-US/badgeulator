@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :designs
+  resources :designs do
+    member do
+      get 'clone'
+    end
+  end
   resources :sides
   resources :artifacts do
     member do

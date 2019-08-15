@@ -10,6 +10,7 @@
       %tr
         %td= link_to design.name, design
         %td
+          = link_to 'Clone', clone_design_path(design), class: 'btn btn-xs btn-default'
           = link_to 'Edit', edit_design_path(design), class: 'btn btn-xs btn-default'
           = link_to 'Delete', design, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger'
 

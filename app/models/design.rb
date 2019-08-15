@@ -23,11 +23,11 @@ class Design < ApplicationRecord
     if src_badge.blank?
       badge = Badge.new({
           # Redwall
-          employee_id: '0-399-21549-2',
-          first_name: 'Boar',
-          last_name: 'the Fighter',
-          title: 'Badger Lord',
-          department: 'Salamandastron'
+          employee_id: '9999',
+          first_name: 'First Name',
+          last_name: 'Last Name',
+          title: 'Title',
+          department: 'Department'
         })
     else
       badge = src_badge
@@ -198,5 +198,33 @@ class Design < ApplicationRecord
     end
 
     File.delete filename
+  end
+
+  def clone
+    d = Design.new(self.attributes)
+    d.id = nil
+    d.name += ' (copy)'
+    d.sample = self.sample if self.sample.present?
+    d.save
+
+    self.sides.each do |side|
+      s = d.sides.build(side.attributes)
+      s.id = nil
+      s.save
+
+      side.artifacts.each do |artifact|
+        a = s.artifacts.build(artifact.attributes)
+        a.id = nil
+        a.attachment = artifact.attachment if artifact.attachment.present?
+        a.save
+
+        artifact.properties.each do |property|
+          p = a.properties.build(property.attributes)
+          p.id = nil
+          p.save
+        end
+      end
+
+    end
   end
 end

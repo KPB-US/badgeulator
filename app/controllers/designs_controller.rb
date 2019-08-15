@@ -23,6 +23,11 @@ class DesignsController < ApplicationController
   def edit
   end
 
+  def clone
+    @design.clone
+    redirect_to designs_path
+  end
+
   # POST /designs
   # POST /designs.json
   def create
