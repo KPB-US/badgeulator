@@ -57,7 +57,7 @@ end
 
 gem 'bootstrap-sass', '>= 3.4.1'
 gem 'font-awesome-sass', '>= 5.0.6.2'
-gem 'simple_form', '>= 3.5.1'
+gem 'simple_form', '>= 5.0.0'
 gem 'will_paginate-bootstrap'
 
 gem 'jcrop-rails-v2'
