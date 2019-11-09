@@ -62,7 +62,7 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
-    brakeman (4.5.0)
+    brakeman (4.7.1)
     builder (3.2.3)
     byebug (11.0.1)
     cancancan (2.3.0)
@@ -311,7 +311,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (>= 3.4.1)
-  brakeman
+  brakeman (>= 4.7.1)
   byebug
   cancancan (~> 2.0)
   capistrano (~> 3.6)
@@ -359,4 +359,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   2.0.1
+   1.17.3
