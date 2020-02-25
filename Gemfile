@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.5', '>= 5.1.5'
+gem 'rails', '~> 5.1.7'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.2', '>= 4.2.2'
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '>= 4.3.1'
+gem 'jquery-rails', '>= 4.3.3'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -34,7 +34,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'simplecov', require: false
 
-  gem 'dotenv-rails', '>= 2.2.1'
+  gem 'dotenv-rails', '>= 2.7.2'
   gem 'seed_dump'
 end
 
@@ -45,18 +45,18 @@ group :development do
   gem 'web-console', '~> 3.5.1'
 
   # Use Capistrano for deployment
-  gem 'capistrano', '~> 3.6'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rails', '~> 1.2'
-  gem 'capistrano-rvm'
-  gem 'capistrano-clockwork'
+  gem 'capistrano', '~> 3.11', '>= 3.11.0'
+  gem 'capistrano-passenger', '>= 0.2.0'
+  gem 'capistrano-rails', '~> 1.4', '>= 1.4.0'
+  gem 'capistrano-rvm', '>= 0.1.2'
+  gem 'capistrano-clockwork', '>= 1.0.1'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
 gem 'bootstrap-sass', '>= 3.4.1'
-gem 'font-awesome-sass', '>= 5.0.6.2'
+gem 'font-awesome-sass', '>= 5.8.1'
 gem 'simple_form', '>= 3.5.1'
 gem 'will_paginate-bootstrap'
 
@@ -68,7 +68,7 @@ gem 'paperclip', '~> 5.3.0'
 gem 'prawn'
 
 gem 'cancancan', '~> 2.0'
-gem 'devise', '>= 4.6.0'
+gem 'devise', '>= 4.6.2'
 gem 'devise_ldap_authenticatable', '>= 0.8.6'
 gem 'rolify'
 
