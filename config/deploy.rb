@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '~>3.11.0'
+lock '~>3.13'
 
 set :application, 'badgeulator'
 set :repo_url, 'git@github.com:KPB-US/badgeulator.git'
