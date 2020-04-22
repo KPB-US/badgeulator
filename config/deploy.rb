@@ -1,6 +1,8 @@
 # config valid only for current version of Capistrano
 lock '~>3.13'
 
+set :rvm_ruby_version, '2.6.5'
+
 set :application, 'badgeulator'
 set :repo_url, 'git@github.com:KPB-US/badgeulator.git'
 
