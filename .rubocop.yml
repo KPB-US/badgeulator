@@ -1,5 +1,5 @@
-Metrics/LineLength:
-  Max: 120
+AllCops:
+  NewCops: enable
 
-Style/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
+Layout/LineLength:
+  Max: 120
