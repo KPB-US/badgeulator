@@ -60,7 +60,7 @@ function initGuesswho() {
     ev.originalEvent.preventDefault();
   }
 
-  $('div.guesswho').on('dragstart', '.name-tag', dragstart_handler);
+  $('div.guesswho-nametags').on('dragstart', '.name-tag', dragstart_handler);
   $('div.guesswho').on('dragover', '.person', dragover_handler);
   $('div.guesswho').on('drop', '.person', drop_handler);
 

@@ -135,8 +135,16 @@ form.filter-form {
 }
 
 .gallery {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  //grid-auto-columns: 250px;
+  //grid-template-columns: repeat(3, 1fr);
+
   .thumbnail {
     padding-top: 9px;
+    margin-bottom: 0;
     .caption {
       h3 {
         margin-top: 0;
@@ -180,6 +188,32 @@ form.filter-form {
   .used {
     //background-color: gray;
     opacity: .2;
+  }
+
+  &.guesswho {
+    margin-bottom: 10px;
+  }
+}
+
+.guesswho-nametags {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+  .thumbnail {
+    margin-bottom: 0;
+  }
+
+  .name-tag {
+    .caption {
+      h3 {
+        margin-top: 0;
+      }
+      p {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 

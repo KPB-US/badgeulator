@@ -1,9 +1,10 @@
 <h1>Gallery</h1>
 <div class="gallery">
-  <div class="row">
     <% @badges.each do |b| %>
       <%= render 'gallery_badge', badge: b %>
     <% end %>
-  </div>
+</div>
+
+<div class="row">
   <%= will_paginate @badges, renderer: BootstrapPagination::Rails  %>
 </div>

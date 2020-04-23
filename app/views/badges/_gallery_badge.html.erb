@@ -1,17 +1,15 @@
-<div class="col-xs-6 col-md-2">
-  <div class="thumbnail" data-id="<%= badge.id %>">
-    <div class="created-at"><%= badge.created_at.localtime.strftime('%-m/%-d/%Y %-I:%M%p') %></div>
-    <a href="<%= badge.picture.url(:original) %>" target="_blank" title="<%= badge.employee_id %>">
-      <img src="<%= badge.picture.url(:thumb) %>" alt="<%= badge.name %>">
-    </a>
-    <div class="caption text-center">
-      <h3>
-        <%= badge.name %>
-      </h3>
-      <p>
-        <span class="title"><%= badge.title %></span>
-        <span class="department"><%= badge.department %></span>
-      </p>
-    </div>
+<div class="thumbnail" data-id="<%= badge.id %>">
+  <div class="created-at"><%= badge.created_at.localtime.strftime('%-m/%-d/%Y %-I:%M%p') %></div>
+  <a href="<%= badge.picture.url(:original) %>" target="_blank" title="<%= badge.employee_id %>">
+    <img src="<%= badge.picture.url(:thumb) %>" alt="<%= badge.name %>">
+  </a>
+  <div class="caption text-center">
+    <h3>
+      <%= badge.name %>
+    </h3>
+    <p>
+      <span class="title"><%= badge.title %></span>
+      <span class="department"><%= badge.department %></span>
+    </p>
   </div>
 </div>

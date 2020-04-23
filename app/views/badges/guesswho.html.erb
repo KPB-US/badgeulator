@@ -5,15 +5,13 @@
 </h1>
 
 <div class="gallery guesswho">
-  <div class="row">
-    <% @badges.each do |b| %>
-      <%= render 'guesswho_badge', badge: b %>
-    <% end %>
-  </div>
+  <% @badges.each do |b| %>
+    <%= render 'guesswho_badge', badge: b %>
+  <% end %>
+</div>
 
-  <div class="row">
-    <% @badges.shuffle.each do |b| %>
-      <%= render 'name_tag', badge: b %>
-    <% end %>
-  </div>
+<div class="guesswho-nametags">
+  <% @badges.shuffle.each do |b| %>
+    <%= render 'name_tag', badge: b %>
+  <% end %>
 </div>
