@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.4
+  - 2.6
 before_script:
   - sudo apt-get install poppler-utils cups
   - cp config/secrets.yml.travis config/secrets.yml

@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.4.1-jessie
+      - image: circleci/ruby:2.6.5-jessie
         environment:
           USE_LDAP: false
           PRINTER: nowhere
@@ -43,6 +43,11 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            # https://discuss.circleci.com/t/using-bundler-2-0-during-ci-fails/27411/2
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            sudo gem update --system
+            gem install bundler
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
