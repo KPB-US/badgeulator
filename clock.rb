@@ -19,7 +19,7 @@ module Clockwork
   #   puts "Running #{job}, at #{time}"
   # end
 
-  every(4.hours, 'Badge.update_missing_dns') do
-    Badge.update_missing_dns
+  every(4.hours, 'Update Missing DNs') do
+    DistinguishedNamePopulator.call
   end
 end

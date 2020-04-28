@@ -47,7 +47,7 @@ class ArtifactsController < ApplicationController
       if @artifact.update(artifact_params)
         # to assist in designing cards, update the sample when an artifact is updated
         # TODO! check performance
-        @artifact.side.design.render_card nil, false, true
+        @artifact.side.design.render_card(badge: nil, layout_guides: false, update_sample: true)
 
         format.html { redirect_to @artifact.side, notice: 'Artifact was successfully updated.' }
         format.json { render :show, status: :ok, location: @artifact }

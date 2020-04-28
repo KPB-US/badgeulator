@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Define abilities for the passed in user.
 class Ability
   include CanCan::Ability
 

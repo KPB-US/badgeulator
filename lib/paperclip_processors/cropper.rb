@@ -14,7 +14,7 @@ module Paperclip
       cmd = []
       target = @attachment.instance
       if target.cropping?
-        cmd = [" -crop '#{target.crop_w.to_i}x#{target.crop_h.to_i}+#{target.crop_x.to_i}+#{target.crop_y.to_i}'"]
+        cmd = [" -crop '#{target.crop_region.width.to_i}x#{target.crop_region.height.to_i}+#{target.crop_region.x.to_i}+#{target.crop_region.y.to_i}'"]
       end
 
       cmd

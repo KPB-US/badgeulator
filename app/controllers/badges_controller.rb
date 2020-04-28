@@ -141,7 +141,7 @@ class BadgesController < ApplicationController
 
   def generate
     begin
-      Design.selected.render_card(@badge)
+      Design.selected.render_card(badge: @badge)
       flash[:notice] = "Card has been generated and is ready to print."
     rescue Exception => e
       flash[:error] = "Unable to generate card - #{e.message}"
@@ -198,10 +198,11 @@ class BadgesController < ApplicationController
   # GET /badges/1/crop
   def crop
     ratio = @badge.picture_geometry(:original).width / @badge.picture_geometry(:badge).width
-    @badge.crop_x = params[:x].to_i * ratio
-    @badge.crop_y = params[:y].to_i * ratio
-    @badge.crop_w = params[:w].to_i * ratio
-    @badge.crop_h = params[:h].to_i * ratio
+    @badge.set_crop_region(x: params[:x].to_i * ratio, y: params[:y].to_i * ratio, width: params[:w].to_i * ratio, height: params[:h].to_i * ratio)
+    # @badge.crop_x = params[:x].to_i * ratio
+    # @badge.crop_y = params[:y].to_i * ratio
+    # @badge.crop_w = params[:w].to_i * ratio
+    # @badge.crop_h = params[:h].to_i * ratio
 
     @badge.picture.reprocess! :badge
     @badge.picture.reprocess! :thumb
@@ -221,7 +222,7 @@ class BadgesController < ApplicationController
         flash[:error] ||= []
         flash[:error] << "No default design has been set."
       else
-        Design.selected.render_card(@badge)
+        Design.selected.render_card(badge: @badge)
       end
     rescue Exception => e
       flash[:error] ||= []
@@ -327,7 +328,7 @@ class BadgesController < ApplicationController
       elsif @badge.card.blank?
         # there is no card so try to generate one
         begin
-          Design.selected.render_card(@badge)
+          Design.selected.render_card(badge: @badge)
         rescue Exception => e
           flash[:error] = "Unable to generate card - #{e.message}"
         end
