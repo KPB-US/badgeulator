@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apt-get update && sudo apt-get install poppler-utils cups
+      - run: sudo apt-get update && sudo apt-get install poppler-utils cups freetds-dev
       - run: sudo bash -c 'echo FileDevice yes>>/etc/cups/cupsd.conf; service cups restart'
       - run: sudo lpadmin -p nowhere -E -v file:/dev/null
 
