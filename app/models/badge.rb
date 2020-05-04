@@ -92,6 +92,12 @@ class Badge < ApplicationRecord
     ActiveDirectoryPhotoUpdater.new(distinguished_name: dn, image_path: picture.path(:thumb)).call
   end
 
+  def update_payroll_thumbnail
+    if !picture.blank? && !employee_id.blank? && wants_thumbnail_updated?
+      PayrollPhotoUpdater.new(badge: self).call
+    end
+  end
+
   private
 
   def not_ldappable?

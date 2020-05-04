@@ -115,3 +115,4 @@ gem 'select2-rails', github: 'mfrederickson/select2-rails' # from another forker
 
 gem 'clockwork'
 gem 'daemons'
+gem 'tiny_tds'
