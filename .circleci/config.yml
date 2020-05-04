@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apt-get update && sudo apt-get upgrade && sudo apt-get install poppler-utils cups freetds-dev freetds-bin
+      - run: sudo apt-get update && sudo apt-get install poppler-utils cups freetds-dev freetds-bin
       - run: sudo bash -c 'echo FileDevice yes>>/etc/cups/cupsd.conf; service cups restart'
       - run: sudo lpadmin -p nowhere -E -v file:/dev/null
 
@@ -48,6 +48,13 @@ jobs:
             source $BASH_ENV
             sudo gem update --system
             gem install bundler
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      # per https://discuss.circleci.com/t/failing-build-ruby-mysql2-error/22654/5
+      - run:
+          name: reinstall mysql2
+          command: |
+            bundle exec gem uninstall mysql2
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
