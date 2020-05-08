@@ -16,8 +16,8 @@ function handleSnapshotUploadResponse(data) {
   $('#cropbox').removeClass("hidden");
 
   // default for when no face found
-  var face = { x: 1, y: 1, x2: 25, y2: 25 }
-  var maxSize = [200 * 0.85, 200];
+  var face = { x: 1, y: 1, x2: 200 * 0.85, y2: 200 }
+  var maxSize = [300 * 0.85, 300];
 
   z = data.results;
   // console.debug(z);
