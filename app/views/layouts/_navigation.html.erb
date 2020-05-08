@@ -20,35 +20,37 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
-          <%= link_to new_badge_path do %>
-            <i class="fa fa-plus-circle"></i> New Badge
-          <% end %>
-        </li>
-        <li>
-          <%= link_to badges_path do %>
-            <i class="fa fa-credit-card"></i> Badges
-          <% end %>
-        </li>
-        <li>
-          <%= link_to recent_badges_path do %>
-            <i class="fa fa-th-large"></i> Gallery
-          <% end %>
-        </li>
-        <% if user_signed_in? and current_user.has_role? :admin %>
+        <% if user_signed_in? %>
           <li>
-            <%= link_to designs_path do %>
-              <i class="fa fa-file-text-o"></i> Designs
+            <%= link_to new_badge_path do %>
+              <i class="fa fa-plus-circle"></i> New Badge
             <% end %>
           </li>
           <li>
-            <%= link_to users_path do %>
-              <i class="fa fa-user"></i> Users
+            <%= link_to badges_path do %>
+              <i class="fa fa-credit-card"></i> Badges
             <% end %>
           </li>
           <li>
-            <a href="https://10.0.0.29:631/printers" target="_blank"><i class="fa fa-print"></i> Printers</a>
+            <%= link_to recent_badges_path do %>
+              <i class="fa fa-th-large"></i> Gallery
+            <% end %>
           </li>
+          <% if current_user.has_role? :admin %>
+            <li>
+              <%= link_to designs_path do %>
+                <i class="fa fa-file-text-o"></i> Designs
+              <% end %>
+            </li>
+            <li>
+              <%= link_to users_path do %>
+                <i class="fa fa-user"></i> Users
+              <% end %>
+            </li>
+            <li>
+              <a href="https://10.0.0.29:631/printers" target="_blank"><i class="fa fa-print"></i> Printers</a>
+            </li>
+          <% end %>
         <% end %>
         <li>
           <%= link_to guesswho_badges_path, data: { turbolinks: false } do %>
