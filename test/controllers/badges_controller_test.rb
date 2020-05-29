@@ -4,8 +4,19 @@ class BadgesControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @badge = badges(:one)
+    @badge.card = fixture_file_upload('images/design2.pdf', 'application/pdf')
+    @badge.picture = fixture_file_upload('images/badger_300r.jpg', 'image/jpg')
+    @badge.save
+
     @user = users(:user)
     sign_in @user
+  end
+
+  test 'guesswho available to nonauthenticated users' do
+    sign_out @user
+    get guesswho_badges_url
+    assert_response :success
+    assert_not_nil assigns(:badges)
   end
 
   test 'should get index' do

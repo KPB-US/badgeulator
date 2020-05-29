@@ -6,7 +6,8 @@ one:
   last_name: Doe
   title: MyString
   department: MyString
-  update_thumbnail: true
+  update_thumbnail: 1
+  
 
 two:
   employee_id: two
@@ -14,4 +15,4 @@ two:
   last_name: Doe
   title: MyString
   department: MyString
-  update_thumbnail: false
+  update_thumbnail: 0
