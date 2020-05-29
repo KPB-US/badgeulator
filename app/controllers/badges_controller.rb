@@ -13,7 +13,7 @@ class BadgesController < ApplicationController
   end
 
   def guesswho
-    @badges = Badge.complete.shuffle.slice(1, 12)
+    @badges = Badge.complete.shuffle.slice(0, 12) || []
     render 'guesswho'
   end
 
