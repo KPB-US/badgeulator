@@ -124,4 +124,16 @@ class ArtifactsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to artifacts_url
     assert_equal a.properties.find_by(name: 'up').value, '10'
   end
+
+  test 'updating an artifact re-renders the design sample' do
+    
+  end
+
+  test 'copying properties re-renders the design sample' do
+    
+  end
+
+  test 'adding a property re-renders the design sample' do
+    
+  end
 end
