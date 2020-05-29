@@ -3,7 +3,7 @@ cache: bundler
 rvm:
   - 2.6.5
 before_script:
-  - sudo apt-get install poppler-utils cups
+  - sudo apt-get install poppler-utils cups freetds-dev freetds-bin
   - cp config/secrets.yml.travis config/secrets.yml
   - cp config/database.yml.travis config/database.yml
   - cp config/ldap.yml.travis config/ldap.yml
