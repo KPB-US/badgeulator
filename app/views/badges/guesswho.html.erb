@@ -15,3 +15,7 @@
     <%= render 'name_tag', badge: b %>
   <% end %>
 </div>
+
+<% if Rails.env.test? %>
+  <%= javascript_include_tag 'drag-mock.min.js', 'data-turbolinks-track' => false %>
+<% end %>
