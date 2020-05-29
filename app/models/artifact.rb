@@ -1,18 +1,4 @@
 class Artifact < ApplicationRecord
-  # def self.ALLOWED
-  #   [
-  #   'layout_guides',
-  #   'fill_gradient',
-  #   'fill_rectangle',
-  #   'font',
-  #   'image',
-  #   'move_down',
-  #   'move_up',
-  #   'text_box',
-  #   'textbox'
-  #   ]
-  # end
-
   belongs_to :side
   has_many :properties, dependent: :destroy
 
@@ -31,6 +17,12 @@ class Artifact < ApplicationRecord
 
   after_save :reorder
   after_destroy :reorder
+
+  def prior
+    Artifact.where('side_id = :side and "order" < :order', side: side_id, order: order).last
+  end
+
+  private
 
   def reorder
     side.reorder_artifacts
