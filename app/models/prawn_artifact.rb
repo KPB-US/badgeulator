@@ -23,7 +23,7 @@ class PrawnArtifact
   end
 
   def self.from(artifact)
-    artifact_mapping[artifact.name]
+    artifact_mapping[artifact.name] || PrawnArtifactNull
   end
 
   def value(badge)
