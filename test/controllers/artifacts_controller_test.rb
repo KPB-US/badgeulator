@@ -126,14 +126,46 @@ class ArtifactsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'updating an artifact re-renders the design sample' do
-    
+    before_sample_updated_at = @artifact.side.design.sample_updated_at
+
+    patch artifact_url(@artifact.id), params: {
+      artifact: {
+        description: @artifact.description,
+        name: @artifact.name + ' updated',
+        order: @artifact.order,
+        side_id: @artifact.side_id,
+        value: @artifact.value
+      }
+    }
+
+    after_sample_updated_at = Design.find(@artifact.side.design.id).sample_updated_at
+    assert_not_equal before_sample_updated_at, after_sample_updated_at
   end
 
   test 'copying properties re-renders the design sample' do
+    before_sample_updated_at = @artifact.side.design.sample_updated_at
+
+    a = artifacts(:two)
+    get copy_props_artifact_url(a)
     
+    after_sample_updated_at = Design.find(@artifact.side.design.id).sample_updated_at
+    assert_not_equal before_sample_updated_at, after_sample_updated_at
   end
 
   test 'adding a property re-renders the design sample' do
-    
+    before_sample_updated_at = @artifact.side.design.sample_updated_at
+
+    post artifacts_url, params: {
+      artifact: {
+        description: @artifact.description,
+        name: @artifact.name,
+        order: @artifact.order,
+        side_id: @artifact.side_id,
+        value: @artifact.value
+      }
+    }
+
+    after_sample_updated_at = Design.find(@artifact.side.design.id).sample_updated_at
+    assert_not_equal before_sample_updated_at, after_sample_updated_at
   end
 end
