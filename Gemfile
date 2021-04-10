@@ -64,7 +64,7 @@ gem 'jquery-rails', '>= 4.3.1'
 
 group :development, :test do
   gem 'brakeman'
-  gem 'rubocop'
+  gem 'rubocop', '>= 0.84.0'
   gem 'simplecov', require: false
 
   gem 'dotenv-rails', '>= 2.2.1'
