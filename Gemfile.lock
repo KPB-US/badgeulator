@@ -137,8 +137,8 @@ GEM
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.5)
-    font-awesome-sass (6.0.0)
-      sassc (>= 2.0)
+    font-awesome-sass (5.15.1)
+      sassc (>= 1.11)
     globalid (1.0.0)
       activesupport (>= 5.0)
     haml (5.2.2)
@@ -377,7 +377,7 @@ DEPENDENCIES
   devise (>= 4.6.0)
   devise_ldap_authenticatable (>= 0.8.6)
   dotenv-rails (>= 2.2.1)
-  font-awesome-sass (>= 5.0.6.2)
+  font-awesome-sass (~> 5.13)
   haml
   jbuilder (~> 2.5)
   jcrop-rails-v2
