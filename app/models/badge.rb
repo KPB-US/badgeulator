@@ -12,7 +12,8 @@ class Badge < ApplicationRecord
                       thumb: ['96x96#', :png]
                     },
                     processors: [:cropper],
-                    source_file_options: { all: '-auto-orient' }
+                    source_file_options: { all: '-auto-orient' },
+                    convert_options: { thumb: '-quality 85 -strip' }
 
   has_attached_file :card,
                     styles: {
