@@ -12,6 +12,7 @@ class PrawnArtifact
       'layout_guides' => PrawnArtifactNull,
       'fill_gradient' => PrawnArtifactFillGradient,
       'fill_rectangle' => PrawnArtifactFillRectangle,
+      'stroke_rectangle' => PrawnArtifactStrokeRectangle,
       'font' => PrawnArtifactFont,
       'image' => PrawnArtifactImage,
       'move_down' => PrawnArtifactMoveDown,
