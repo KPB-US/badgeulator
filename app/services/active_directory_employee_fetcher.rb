@@ -8,14 +8,14 @@ class ActiveDirectoryEmployeeFetcher
   def self.find(attribute:, value:)
     entry = ad_lookup(attribute: attribute, value: value)
     return {} if entry.blank?
-
     {
       first_name: entry.givenname.first,
       last_name: entry.sn.first,
       department: entry.department.first,
       title: entry.title.first,
       employee_id: entry.employeeid.first,
-      dn: entry.dn
+      dn: entry.dn,
+      unique_id: entry.employeenumber.first
     }
   end
 
@@ -23,7 +23,7 @@ class ActiveDirectoryEmployeeFetcher
     results = with_ldap do |ldap|
       ldap.search(
         filter: "(#{attribute}=#{value})",
-        attributes: %w[givenname mail dn sn employeeID manager title department thumbnailPhoto]
+        attributes: %w[givenname mail dn sn employeeID manager title department thumbnailPhoto employeeNumber]
       )
     end
     (results.size == 1 ? results.first : nil)
