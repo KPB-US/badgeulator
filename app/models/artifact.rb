@@ -12,7 +12,7 @@ class Artifact < ApplicationRecord
   validates :order, presence: true
   # only attachment types that prawn can handle
   validates_attachment :attachment, content_type: {
-    content_type: ['image/jpeg', 'image/png', 'application/x-font-ttf', 'application/x-font-truetype','font/ttf']
+    content_type: ['image/jpeg', 'image/png', 'application/x-font-ttf', 'application/x-font-truetype','font/ttf','font/sfnt']
   }
 
   after_save :reorder

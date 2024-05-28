@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322193218) do
+ActiveRecord::Schema.define(version: 2024_05_28_202512) do
 
-  create_table "artifacts", force: :cascade do |t|
+  create_table "artifacts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "side_id"
     t.string "name"
     t.integer "order", default: 0
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160322193218) do
     t.index ["side_id"], name: "index_artifacts_on_side_id"
   end
 
-  create_table "badges", force: :cascade do |t|
+  create_table "badges", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "employee_id"
     t.string "last_name"
     t.string "title"
@@ -45,9 +45,10 @@ ActiveRecord::Schema.define(version: 20160322193218) do
     t.string "dn"
     t.string "first_name"
     t.boolean "update_thumbnail", default: true
+    t.string "unique_id"
   end
 
-  create_table "designs", force: :cascade do |t|
+  create_table "designs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160322193218) do
     t.boolean "default"
   end
 
-  create_table "properties", force: :cascade do |t|
+  create_table "properties", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "artifact_id"
     t.string "name"
     t.string "value"
@@ -67,7 +68,7 @@ ActiveRecord::Schema.define(version: 20160322193218) do
     t.index ["artifact_id"], name: "index_properties_on_artifact_id"
   end
 
-  create_table "roles", force: :cascade do |t|
+  create_table "roles", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.integer "resource_id"
     t.string "resource_type"
@@ -77,7 +78,7 @@ ActiveRecord::Schema.define(version: 20160322193218) do
     t.index ["name"], name: "index_roles_on_name"
   end
 
-  create_table "sides", force: :cascade do |t|
+  create_table "sides", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "design_id"
     t.integer "order", default: 0
     t.integer "orientation"
@@ -89,7 +90,7 @@ ActiveRecord::Schema.define(version: 20160322193218) do
     t.index ["design_id"], name: "index_sides_on_design_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -107,7 +108,7 @@ ActiveRecord::Schema.define(version: 20160322193218) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "users_roles", id: false, force: :cascade do |t|
+  create_table "users_roles", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
