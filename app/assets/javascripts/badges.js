@@ -145,7 +145,7 @@ function cropSnapshot() {
 }
 
 function handleLookup() {
-  console.log("handling lookup");
+  console.log("handling that lookup");
 
   $(document)
     .on('ajax:success', '.lookup-form', function (e, data, status, xhr) {
@@ -161,6 +161,7 @@ function handleLookup() {
         $('#badge_title').val(data["title"]);
         $('#badge_employee_id').val(data["employee_id"]);
         $('#badge_dn').val(data["dn"]);
+        $('#badge_employee_number').val(data["employee_number"]);
       }
     })
     .on('ajax:error', '.lookup-form', function (e, xhr, status, error) {
