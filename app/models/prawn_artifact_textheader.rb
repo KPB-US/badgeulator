@@ -8,7 +8,12 @@ class PrawnArtifactTextheader < PrawnArtifact
         size: props[:size]
       },
     ],
-    at: props[:at]
+    at: props[:at],
+    align: props[:align],
+    valign: props[:valign],
+    overflow: props[:overflow],
+    height: props[:height],
+    width: props[:width]
     )    
   end
 end
