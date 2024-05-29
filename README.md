@@ -22,6 +22,12 @@ A system to keep track of and print employee identification cards.
 
 It does not do any encoding, though adding a barcode would be simple since prawn is used to generate the badge.
 
+# PRAWN NOTES
+
+https://www.rubydoc.info/github/sandal/prawn/toplevel
+
+{cursor} = The current y drawing position relative to the innermost bounding box, or to the page margins at the top level.
+
 # CONFIGURATION
 
 - If using active directory, you'll need to configure the ldap.yml for your connection information.
@@ -60,3 +66,4 @@ lpadmin -p nowhere -E -v file:/dev/null
 # ATTRIBUTION
 
 Badger image taken from photo by [James Perdue](https://www.flickr.com/photos/rvguy/3860650150), via [CC2 license] (https://creativecommons.org/licenses/by/2.0/).
+
