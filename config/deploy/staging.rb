@@ -1,4 +1,4 @@
-server 'artemis2', user: 'deploy', roles: %w(app db web)
+server 'ubuntu', user: 'deploy', roles: %w(app db web)
 
 # server-based syntax
 # ======================
