@@ -88,16 +88,15 @@ class DesignsController < ApplicationController
     myBadge = Badge.find(2201)
     
 
-      cmd = "lp -d IT-Magicard-RioPro #{ENV["PRINTER_OPTIONS"]} #{myBadge.card.path(:original)} 2>&1"
-      output = `#{cmd}`
-      printed_ok =$?.success?
-      Rails.logger.info "#{cmd} = #{printed_ok}"
+    cmd = "lp -d IT-Magicard-RioPro #{ENV["PRINTER_OPTIONS"]} #{myBadge.card.path(:original)} 2>&1"
+    output = `#{cmd}`
+    printed_ok =$?.success?
+    Rails.logger.info "#{cmd} = #{printed_ok}"
 
-      if printed_ok
-        flash[:notice] = "Badge was sent to printer.  #{output}"
-      else
-        flash[:error] = "Unable to send badge to printer.  #{output}"
-      end
+    if printed_ok
+      flash[:notice] = "Badge was sent to printer.  #{output}"
+    else
+      flash[:error] = "Unable to send badge to printer.  #{output}"
     end
   end
 end
