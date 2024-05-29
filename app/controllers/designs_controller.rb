@@ -86,17 +86,23 @@ class DesignsController < ApplicationController
 
   def print_design
     myBadge = Badge.find(2201)
+    begin
+      @design.render_card(badge: myBadge)
+    rescue Exception => e
+      flash[:error] = "Unable to generate card - #{e.message}"
+    end
     
+    if flash[:error].blank?
+      cmd = "lp -d IT-Magicard-RioPro #{ENV["PRINTER_OPTIONS"]} #{myBadge.card.path(:original)} 2>&1"
+      output = `#{cmd}`
+      printed_ok =$?.success?
+      Rails.logger.info "#{cmd} = #{printed_ok}"
 
-    cmd = "lp -d IT-Magicard-RioPro #{ENV["PRINTER_OPTIONS"]} #{myBadge.card.path(:original)} 2>&1"
-    output = `#{cmd}`
-    printed_ok =$?.success?
-    Rails.logger.info "#{cmd} = #{printed_ok}"
-
-    if printed_ok
-      flash[:notice] = "Badge was sent to printer.  #{output}"
-    else
-      flash[:error] = "Unable to send badge to printer.  #{output}"
+      if printed_ok
+        flash[:notice] = "Badge was sent to printer.  #{output}"
+      else
+        flash[:error] = "Unable to send badge to printer.  #{output}"
+      end
     end
   end
 end
