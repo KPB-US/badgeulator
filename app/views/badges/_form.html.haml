@@ -5,7 +5,7 @@
   = f.input :department, options
   = f.input :title, options
   = f.input :employee_id, { label: 'Employee ID' }.merge(options)
-  = f.input :unique_id, { label: 'Unique Identifier ID Number' }.merge(options)
+  -# = f.input :unique_id, { label: 'Unique Identifier ID Number' }.merge(options)
   - if ENV["USE_LDAP"] == "true"
     = f.input :update_thumbnail, { label: 'Update the photo in Active Directory so that it shows up in Outlook, Helpdesk applications, and SharePoint?' }.merge(checkbox_options)
   = f.hidden_field :dn, label: 'AD Distinguished Name', title: 'required for updating thumbnail in AD'

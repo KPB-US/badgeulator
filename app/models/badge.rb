@@ -37,6 +37,7 @@ class Badge < ApplicationRecord
   validates :department, presence: true
   validates :title, presence: true
   validates :employee_id, presence: true
+  # validates :unique_id, presence: true
 
   # Define a rectangle region.
   Rectangle = Struct.new(:x, :y, :width, :height)

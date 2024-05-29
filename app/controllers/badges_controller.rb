@@ -310,7 +310,7 @@ class BadgesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def badge_params
-      params.require(:badge).permit(:employee_id, :first_name, :last_name, :title, :department, :dn, :update_thumbnail)
+      params.require(:badge).permit(:employee_id, :first_name, :last_name, :title, :department, :dn, :unique_id, :update_thumbnail)
     end
 
     def snapshot_params
