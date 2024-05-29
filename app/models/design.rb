@@ -31,4 +31,17 @@ class Design < ApplicationRecord
   def clone
     DesignCloner.new(original: self).call
   end
+
+  def get_printers  
+    cmd = "lpstat -v"
+    output = `#{cmd}`
+    a = output.split("\n")
+    for i in a do 
+      i = i.match(/device for (.*?):/).to_s
+      i.gsub("device for ", "")
+      i.gsub(":", "")
+    end
+    return a
+  end
+
 end
