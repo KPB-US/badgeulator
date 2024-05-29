@@ -42,6 +42,8 @@ https://www.rubydoc.info/github/sandal/prawn/toplevel
 - Make sure you have pdftoppm installed.  It's in the poppler-utils apt-get package.  This is used for
 converting the pdf to images for previews and does a much crisper job than imagemagick.
 
+Disable CUPS printer discovery by editing /etc/cups/cups-browsed.conf, setting 'BrowseRemoteProtocols none'
+
 # DEPLOYMENT
 
 Deploy with capistrano.  `cap staging deploy`
