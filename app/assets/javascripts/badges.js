@@ -161,6 +161,7 @@ function handleLookup() {
         $('#badge_title').val(data["title"]);
         $('#badge_employee_id').val(data["employee_id"]);
         $('#badge_dn').val(data["dn"]);
+        // $('#badge_unique_id').val(data["unique_id"]);
       }
     })
     .on('ajax:error', '.lookup-form', function (e, xhr, status, error) {

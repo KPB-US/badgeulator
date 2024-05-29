@@ -124,5 +124,6 @@ class PrawnArtifact
       gsub('{title}', badge.title).
       gsub('{photo}', (badge.picture.blank? ? Rails.root.join('app', 'assets', 'images', 'badger_300r.jpg').to_s : badge.picture.path(:badge))).
       gsub('{attachment}', artifact.attachment.blank? ? '{attachment}' : artifact.attachment.path)
+      # gsub('{unique_id}', badge.unique_id)
   end
 end

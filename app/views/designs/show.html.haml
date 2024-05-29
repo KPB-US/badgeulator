@@ -1,7 +1,9 @@
 - @design.sides.each do |s|
   = render partial: 'sides/details', locals: { side: s }
   = render partial: 'sides/artifact_details', locals: { side: s }
+  = render partial: 'print'
   
 .form-actions
   = link_to 'Edit Design', edit_design_path(@design), class: "btn btn-default"
   = link_to 'Back', designs_path, class: "btn btn-default"
+  

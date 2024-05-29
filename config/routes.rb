@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :designs do
     member do
       get 'clone'
+      get 'print'     # prints design
     end
   end
   resources :sides

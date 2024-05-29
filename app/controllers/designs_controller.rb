@@ -28,6 +28,14 @@ class DesignsController < ApplicationController
     redirect_to designs_path
   end
 
+  def print
+    print_design
+
+    respond_to do |format|
+      format.html { redirect_to @design }
+    end
+  end
+
   # POST /designs
   # POST /designs.json
   def create
@@ -74,5 +82,27 @@ class DesignsController < ApplicationController
   def design_params
     params.require(:design).permit(:name, :sample, :default,
       sides_attributes: [:id, :order, :design_id, :orientation, :margin, :width, :height, :_destroy])
+  end
+
+  def print_design
+    myBadge = Badge.find(2201)
+    begin
+      @design.render_card(badge: myBadge)
+    rescue Exception => e
+      flash[:error] = "Unable to generate card - #{e.message}"
+    end
+    
+    if flash[:error].blank?
+      cmd = "lp -d IT-Magicard-RioPro #{ENV["PRINTER_OPTIONS"]} #{myBadge.card.path(:original)} 2>&1"
+      output = `#{cmd}`
+      printed_ok =$?.success?
+      Rails.logger.info "#{cmd} = #{printed_ok}"
+
+      if printed_ok
+        flash[:notice] = "Badge was sent to printer.  #{output}"
+      else
+        flash[:error] = "Unable to send badge to printer.  #{output}"
+      end
+    end
   end
 end
