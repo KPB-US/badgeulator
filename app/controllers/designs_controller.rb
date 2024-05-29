@@ -86,11 +86,6 @@ class DesignsController < ApplicationController
 
   def print_design
     myBadge = Badge.find(2201)
-    begin
-      @design.render_card(badge: myBadge)
-    rescue Exception => e
-      flash[:error] = "Unable to generate card - #{e.message}"
-    end
     
     if flash[:error].blank?
       cmd = "lp -d IT-Magicard-RioPro #{ENV["PRINTER_OPTIONS"]} #{myBadge.card.path(:original)} 2>&1"
