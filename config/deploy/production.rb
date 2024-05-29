@@ -1,4 +1,4 @@
-server 'ubuntu', user: 'deploy', roles: %w(app db web)
+server 'admweb4', user: 'deploy', roles: %w(app db web)
 
 # server-based syntax
 # ======================
