@@ -32,6 +32,7 @@ class Design < ApplicationRecord
     DesignCloner.new(original: self).call
   end
 
+  # get list of cups printers for future printer selection functionality
   def get_printers  
     cmd = "lpstat -v"
     output = `#{cmd}`

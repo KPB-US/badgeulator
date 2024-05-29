@@ -91,7 +91,7 @@ class DesignsController < ApplicationController
     rescue Exception => e
       flash[:error] = "Unable to generate card - #{e.message}"
     end
-
+    
     if flash[:error].blank?
       cmd = "lp -d IT-Magicard-RioPro #{ENV["PRINTER_OPTIONS"]} #{myBadge.card.path(:original)} 2>&1"
       output = `#{cmd}`
