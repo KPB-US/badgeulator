@@ -29,7 +29,7 @@ class DesignsController < ApplicationController
   end
 
   def print
-    print_design
+    print_design(params[:design][:printer])
 
     respond_to do |format|
       format.html { redirect_to @design }
@@ -84,7 +84,8 @@ class DesignsController < ApplicationController
       sides_attributes: [:id, :order, :design_id, :orientation, :margin, :width, :height, :_destroy])
   end
 
-  def print_design
+  def print_design(myPrinter)
+  #TODO: This is hard-coded to find a specific badge, need to make it auto-select a printable one
     myBadge = Badge.find(2201)
     begin
       @design.render_card(badge: myBadge)
@@ -93,7 +94,7 @@ class DesignsController < ApplicationController
     end
     
     if flash[:error].blank?
-      cmd = "lp -d IT-Magicard-RioPro #{ENV["PRINTER_OPTIONS"]} #{myBadge.card.path(:original)} 2>&1"
+      cmd = "lp -d #{myPrinter} #{ENV["PRINTER_OPTIONS"]} #{myBadge.card.path(:original)} 2>&1"
       output = `#{cmd}`
       printed_ok =$?.success?
       Rails.logger.info "#{cmd} = #{printed_ok}"

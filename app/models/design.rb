@@ -17,6 +17,9 @@ class Design < ApplicationRecord
   validates :name, presence: true
   validates_attachment :sample, content_type: { content_type: 'application/pdf' }
 
+  #For test print function
+  attr_accessor :printer
+
   # returns the default active card design
   def self.selected
     Design.find_by(default: true)
@@ -33,16 +36,19 @@ class Design < ApplicationRecord
   end
 
   # get list of cups printers for future printer selection functionality
-  def get_printers  
+  def self.get_printers  
     cmd = "lpstat -v"
     output = `#{cmd}`
     a = output.split("\n")
-    for i in a do 
-      i = i.match(/device for (.*?):/).to_s
-      i.gsub("device for ", "")
-      i.gsub(":", "")
+    printers = Array.new
+    for d in a do 
+      # byebug
+      d = d.match(/device for (.*?):/).to_s
+      d = d.gsub("device for ", "")
+      d = d.gsub(":", "")
+      printers.push(d)
     end
-    return a
+    return printers
   end
 
 end

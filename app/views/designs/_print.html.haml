@@ -1,4 +1,10 @@
-
-= link_to print_design_url(@design), class: 'btn btn-primary' do
-    %i.fa.fa-printer
-    Print Design to Test Printer
+</br>
+%strong='Select Printer'
+= simple_form_for @design, url: print_design_url(@design, @design[:printer]), remote: true, method: :get do |f|
+  .form-group
+    =f.input :printer, :collection => Design.get_printers,  wrapper_html: { class: 'col-xs-4' }, label: false
+  .form-actions
+    = f.button :submit, "Print Design", class: 'btn btn-default', wrapper_html: { style: 'margin-top:25px;' } 
+</br>
+</br>
+</br>
