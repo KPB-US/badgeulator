@@ -154,6 +154,7 @@ function handleLookup() {
         $('.lookup-status').text("Employee not found.");
         $('#badge_first_name, #badge_last_name, #badge_department, #badge_title, #badge_employee_id, #badge_dn, #badge_unique_id').val('');
       } else {
+        console.log('employee found');
         $('.lookup-status').text("");
         $('#badge_first_name').val(data["first_name"]);
         $('#badge_last_name').val(data["last_name"]);
@@ -162,6 +163,7 @@ function handleLookup() {
         $('#badge_employee_id').val(data["employee_id"]);
         $('#badge_dn').val(data["dn"]);
         $('#badge_unique_id').val(data["unique_id"]);
+        $('#my_uid').val(data["unique_id"]);
       }
     })
     .on('ajax:error', '.lookup-form', function (e, xhr, status, error) {
