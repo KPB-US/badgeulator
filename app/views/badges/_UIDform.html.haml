@@ -1,14 +1,14 @@
 .lookup-form
-  = simple_form_for :lookup, url: lookup_url(format: :json), remote: true, html: { class: "form-inline lookup-form" } do
+  = simple_form_for :uid, url: lookup_url(format: :json), remote: true, html: { class: "form-inline lookup-form" } do
     .form-group
-      %label{for: "employee_id"} Employee ID
-      %input.form-control.required{type: "text", name: "id", id: "employee_id"}
-      %button.btn.btn-default.lookup-employee{ "data-disable-with": "<i class=\"fa fa-spin fa-spinner\"></i> Looking...".html_safe }
+      %input.form-control.required{type: "text", name: "id", id: "employee_ideee", value: @badge.employee_id, style: "visibility:hidden; width:0px;"}
+      %button.btn.btn-default.lookup-uid{ "data-disable-with": "<i class=\"fa fa-spin fa-spinner\"></i> Looking...".html_safe }
         %i.fa.fa-search
-        Lookup
+        Auto-Set Unique ID
   .lookup-status 
-  
+
+
 = simple_form_for @badge do |f|
   = f.error_notification
-  = f.input :unique_id, { label: 'Unique Identifier ID Number' }
+  = f.input :unique_id, { label: 'Unique Identifier ID Number', :input_html => { :id => "my_uid" } }
   = f.button :submit, "Save Unique ID", class: 'btn btn-primary'
