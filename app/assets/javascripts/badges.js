@@ -179,30 +179,6 @@ function handleLookup() {
       }
     });
 
-  // $(document)
-  //   .on('ajax:success', '.uid-form', function (e, data, status, xhr) {
-  //     console.log('lookup success');
-  //     if (typeof data["first_name"] === "undefined" || data["first_name"] === null) {
-  //       $('.lookup-status').text("Employee not found.");
-  //       $('#my_uid').val('0000');
-  //     } else {
-  //       console.log('employee found');
-  //       $('#myid').val('0000');
-  //     }
-  //   })
-  //   .on('ajax:error', '.uid-form', function (e, xhr, status, error) {
-  //     console.log('lookup error');
-  //     $('.employee-info').html(error);
-  //   })
-  //   .on('submit', '.uid-form', function () {
-  //     if ($('#employee_id').val().trim() == '') {
-  //       $('.lookup-status').text("Employee ID is required for lookup.");
-  //       return false;
-  //     } else {
-  //       $('#myid').val('0000');
-  //     }
-  //   });
-
   // wireup generate button
   $(document).on('click', 'a.generate-badge', function () {
     $(this).html('<i class="fa fa-spin fa-spinner"></i> Generating...').addClass('disabled');
