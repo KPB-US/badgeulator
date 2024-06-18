@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_28_202512) do
+ActiveRecord::Schema.define(version: 2024_06_18_191321) do
 
   create_table "artifacts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "side_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2024_05_28_202512) do
     t.string "first_name"
     t.boolean "update_thumbnail", default: true
     t.string "unique_id"
+    t.datetime "generated_at"
   end
 
   create_table "designs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
