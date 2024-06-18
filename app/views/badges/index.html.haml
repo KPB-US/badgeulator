@@ -29,6 +29,7 @@
         %td= badge.title
         %td= badge.department
         %td= l(badge.created_at.localtime, format: :short)
+        %td= badge.generated_at.present? ? l(badge.generated_at.localtime, format: :short) : ""
         - if ENV["USE_LDAP"] == "true"
           %td.publish{id: ['publish', badge.id]}
             - if badge.picture.blank? || badge.dn.blank?
@@ -40,6 +41,7 @@
                 = 'Y'
         %td
           = link_to 'Delete', badge, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' if !current_user.nil? && can?(:delete, badge)
+          = link_to 'Print', print_badge_url(badge), class: 'btn btn-xs btn-primary'
 
 = will_paginate @badges, renderer: BootstrapPagination::Rails
 

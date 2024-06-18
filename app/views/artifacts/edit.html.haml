@@ -2,6 +2,7 @@
 
 - content_for :buttons do
   = link_to 'Show', @artifact, class: 'btn btn-default'
-  = link_to 'Back', artifacts_path, class: 'btn btn-default'
+  = link_to 'Back', @artifact.side, class: 'btn btn-default'
+  = link_to 'Artifacts List', artifacts_path, class: 'btn btn-default'
 
 = render 'form'

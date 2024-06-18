@@ -26,7 +26,8 @@ class BadgesController < ApplicationController
       { title: 'Name',       key: 'badges.last_name, badges.first_name' },
       { title: 'Title',      key: 'badges.title' },
       { title: 'Department', key: 'badges.department' },
-      { title: 'Created',    key: 'badges.created_at' }
+      { title: 'Created',    key: 'badges.created_at' },
+      { title: 'Generated',  key: 'badges.generated_at' }
     ]
     default_sort = '-badges.created_at'
     redirect_url = badges_path
@@ -141,6 +142,7 @@ class BadgesController < ApplicationController
 
   def generate
     begin
+      @badge.generated_at = Time.now
       Design.selected.render_card(badge: @badge)
       flash[:notice] = "Card has been generated and is ready to print."
     rescue Exception => e
