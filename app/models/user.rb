@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   default_scope { order(name: :asc) }
 
-  ROLES = %w(admin user none)
+  ROLES = %w(admin user none manager)
 
   def ldap_before_save
     begin
