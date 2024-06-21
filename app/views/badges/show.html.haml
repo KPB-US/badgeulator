@@ -17,7 +17,7 @@
   = link_to print_badge_url(@badge), class: 'btn btn-primary' do
     %i.fa.fa-printer
     Print
-  - if current_user.has_role?(:admin)
+  - if current_user.has_any_role?(:admin, :manager)
     = link_to generate_badge_url(@badge), class: 'btn btn-default generate-badge' do
       %i.fa.fa-refresh
       Generate
