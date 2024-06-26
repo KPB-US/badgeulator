@@ -1,7 +1,7 @@
 <div style="background:lightpink;">
 <% p = PrintqueueController.new %>
 <% count = p.jobcount %>
-<% if count < 0 %>
+<% if count > 0 %>
 <a href='/printqueue/queue'>
 <strong>
 <%= 'Print jobs in progress: ' + count.to_s %>
