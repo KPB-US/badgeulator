@@ -40,4 +40,7 @@ Rails.application.routes.draw do
   end
 
   post 'lookup' => 'badges#lookup', as: :lookup
+
+
+  get 'printqueue/queue', controller: :printqueue, action: :queue
 end
