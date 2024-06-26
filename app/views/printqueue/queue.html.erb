@@ -1,1 +1,12 @@
-<%= render 'printqueue' %>
+<% cmd = "lpq"%>
+<% output = `#{cmd}` %>
+<%= output.to_s %>
+<br>
+<br>
+<% cmd = "lpstat -l"%>
+<% output = `#{cmd}` %>
+<% a = output.split("\n") %>
+<% a.each do |n| %>
+<%= n.to_s %>
+<br>
+<% end %>
